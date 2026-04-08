@@ -70,7 +70,7 @@ async def webhook(request: Request):
                  await client.post( 
                       f"https://api.github.com/repos/{repo_full_name}/issues/{pr_number}/comments",
                       headers={
-                           "Authorization": "f"token{GITHUB_TOKEN}",
+                           "Authorization": f"token{GITHUB_TOKEN}",
                            "Accept": "application/vnd.github.v3+json"
                         },
                       json={"body": f"**AI Code Review**\n\n{review}"}
