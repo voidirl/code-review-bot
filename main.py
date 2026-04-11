@@ -18,6 +18,16 @@ def verify_signature(payload: bytes, signature: str) -> bool:
     ).hexdigest()
     return hmac.compare_digest(expected, signature)
 
+@app.get("/")
+def root():
+    return {
+        "name": "Code Review Bot",
+        "status": "running",
+        "version": "1.0",
+        "author": "voidirl",
+        "webhook": "/webhook"
+    }
+
 @app.post("/webhook")
 async def webhook(request: Request):
     payload_bytes = await request.body()
