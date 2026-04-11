@@ -48,11 +48,11 @@ async def webhook(request: Request):
                  "https://api.groq.com/openai/v1/chat/completions",
                  headers={
                       "Authorization":f"Bearer {GROQ_API_KEY}",
-                      "Content-Type": "appication/json"
+                      "Content-Type": "application/json"
                  },
                  json={
                       "model":"llama-3.3-70b-versatile",
-                      "message": [
+                      "messages": [
                            {
                                 "role": "system",
                                 "content": "You are an expert code reviewer. Give concise feedback on code quality, bugs, and improvements."
@@ -64,13 +64,14 @@ async def webhook(request: Request):
                       ]
                  }
             )
+            print(groq_response.json())
             review = groq_response.json()["choices"][0]["message"]["content"]
 
             async with httpx.AsyncClient() as client:
                  await client.post( 
                       f"https://api.github.com/repos/{repo_full_name}/issues/{pr_number}/comments",
                       headers={
-                           "Authorization": f"token{GITHUB_TOKEN}",
+                           "Authorization": f"token {GITHUB_TOKEN}",
                            "Accept": "application/vnd.github.v3+json"
                         },
                       json={"body": f"**AI Code Review**\n\n{review}"}
