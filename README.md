@@ -18,9 +18,9 @@ An AI-powered GitHub PR code reviewer built with FastAPI and Groq (LLaMA 3.3-70b
 1. Clone the repo
 2. Create `.env` with:
 
-# GITHUB_TOKEN=your_token
-# GROQ_API_KEY=your_key
-# GITHUB_WEBHOOK_SECRET=your_secret
+ GITHUB_TOKEN=your_token
+ GROQ_API_KEY=your_key
+ GITHUB_WEBHOOK_SECRET=your_secret
 
 3. Install deps: `pip install -r requirements.txt`
 4. Run: `uvicorn main:app --host 0.0.0.0 --port 8000`
