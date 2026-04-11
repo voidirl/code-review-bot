@@ -18,8 +18,8 @@ An AI-powered GitHub PR code reviewer built with FastAPI and Groq (LLaMA 3.3-70b
 1. Clone the repo
 2. Create `.env` with:
 
- GITHUB_TOKEN=your_token
- GROQ_API_KEY=your_key
+ GITHUB_TOKEN=your_token\n
+ GROQ_API_KEY=your_key\n
  GITHUB_WEBHOOK_SECRET=your_secret
 
 3. Install deps: `pip install -r requirements.txt`
