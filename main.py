@@ -39,9 +39,14 @@ async def webhook(request: Request):
     async with httpx.AsyncClient() as client:
         diff_response = await client.get(
             diff_url,
-            headers={"Authorization": f"token {GITHUB_TOKEN}"}
+            headers={"Authorization": f"token {GITHUB_TOKEN}"},
+            follow_redirects=True
         )
+       
         diff = diff_response.text
+        print("DIFF URL:", diff_url)
+        print("DIFF STATUS:", diff_response.status_code)
+        print("DIFF CONTENT:", diff[:500])
 
     async with httpx.AsyncClient() as client:
             groq_response = await client.post(
